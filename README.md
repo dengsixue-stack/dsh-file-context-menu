@@ -14,6 +14,8 @@ DeepSeek Harness 聊天文件超链接右键上下文菜单增强插件。
 
 其他位置的右键菜单保持不变。按住 Shift 再右键，可以直接使用系统原生菜单。
 
+![右键菜单截图](docs/menu-preview.webp)
+
 ## 平台
 
 - **macOS**：已在本机测试。应用列表来自 LaunchServices（与 Finder「打开方式」一致）。
