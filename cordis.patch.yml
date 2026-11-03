@@ -1,3 +1,3 @@
 - insert:
-    - id: file-context-menu
-      name: dsh-file-context-menu
+    - id: file-menu
+      name: dsh-file-menu

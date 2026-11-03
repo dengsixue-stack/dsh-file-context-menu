@@ -1,35 +1,67 @@
-# dsh-file-context-menu
+# dsh-file-menu
 
-DeepSeek Harness 聊天文件超链接右键上下文菜单增强插件。
+> DeepSeek Harness (DSH) 聊天区文件超链接右键上下文菜单增强插件。
 
-## 功能
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-brightgreen.svg)](https://github.com/topics/dsh-plugin)
 
-在聊天区域中，右键点击本地文件超链接、文件引用标签（Chip）或文件路径文本时，弹出快捷操作菜单：
+在 DeepSeek Harness 对话区域中，右键点击本地文件超链接、文件引用标签（Chip）、代码块文件路径时，提供类似操作系统原生体验的快捷操作上下文菜单。
 
-1. **在上次使用的应用中打开**：顶部一行，显示上次用来打开文件的应用。
-2. **打开方式 ▶**：列出可以打开该文件类型的应用，第一个是系统默认应用。
-3. **另存为...**：弹出系统保存对话框，把文件复制到你选的位置。
-4. **复制链接文本**、**复制路径**、**复制文件内容**（文本文件，5MB 以内）。
-5. **在 Finder 中显示**（Windows 上为「在资源管理器中显示」）。
+![右键菜单截图](menu-preview.webp)
 
-其他位置的右键菜单保持不变。按住 Shift 再右键，可以直接使用系统原生菜单。
+---
 
-![右键菜单截图](docs/menu-preview.webp)
+## ✨ 核心特性
 
-## 平台
+- 🚀 **智能上次使用应用**：顶部第一行记忆上次用来打开该类型文件的应用，一键极速重开。
+- 📂 **系统级打开方式**：
+  - **Windows**：自动解析系统注册表中的关联应用列表与 `OpenWithList`，使用 PowerShell 高性能批量提取对应高清应用图标。已修复 Electron 环境下外部应用（如 VS Code、Trae CN 等）继承 `ELECTRON_RUN_AS_NODE` 导致的唤起失效问题。
+  - **macOS**：通过 LaunchServices 提取与 Finder 完全一致的应用列表与图标。
+- 🛡️ **丝滑子菜单防抖**：采用原生级悬停缓冲区与 280ms 延时保护，斜向滑动平滑稳定，杜绝鼠标稍微划偏子菜单就意外消失的问题。
+- 💾 **另存为...**：直接呼出系统原生保存对话框，将工作区文件保存至任意自定义目录。
+- 📋 **快速复制**：一键复制文件名/链接文本、绝对文件路径、文件内容（支持 5MB 以内文本文件）。
+- 🔍 **在资源管理器/Finder 中显示**：直接打开父目录并在资源管理器中精准高亮选中该文件。
+- ⚡ **原生快捷穿透**：按住 `Shift` 键再右键，无缝直通操作系统或浏览器原生菜单，完全不破坏原生体验。
 
-- **macOS**：已在本机测试。应用列表来自 LaunchServices（与 Finder「打开方式」一致）。
-- **Windows**：代码已写，尚未在真机上测试。应用列表来自注册表，图标通过 PowerShell 提取。
+---
 
-## 已知限制
+## 🖥️ 平台兼容性
 
-- 菜单样式用 CSS 近似 macOS 原生菜单，不是系统菜单，外观会有差异。
-- Windows 上的 UWP 应用（如「照片」）不会出现在打开方式列表中。
+| 平台 | 打开方式支持 | 图标提取 | 状态 |
+| :--- | :--- | :--- | :--- |
+| **Windows** | 注册表关联应用 (`HKCU/HKLM`) | PowerShell 批量提取关联图标 | ✅ 已真机适配与环境净化 |
+| **macOS** | LaunchServices 动态解析 | 系统原生图标映射 | ✅ 支持 |
 
-## 安装
+> **提示**：Windows 上的部分受限 UWP 沙盒应用（如系统自带简易照片）不会出现在传统打开方式列表中。
 
-在 DSH Desktop 的「插件」页面安装 `dsh-file-context-menu-1.0.0.tgz`，然后完全退出 DSH（`Cmd+Q`）再重新打开。仅刷新页面不会加载后端改动。
+---
 
-## 许可证
+## 📦 安装与使用
 
-MIT，见 [LICENSE](LICENSE)。
+### 方式 1：通过打包文件安装（推荐）
+
+1. 在项目根目录打包生成 `.tgz`：
+   ```bash
+   pnpm pack
+   # 或 npm pack
+   ```
+2. 在 DSH Desktop 的「插件」页面选择生成的 `dsh-file-menu-1.0.0.tgz` 安装；
+   或者直接使用命令行安装：
+   ```powershell
+   dsh plugin --profile desktop add .\dsh-file-menu-1.0.0.tgz
+   ```
+
+### 方式 2：本地开发目录链接安装（便于调试）
+
+直接将本地源码目录作为插件加入：
+```powershell
+dsh plugin --profile desktop add "C:\Users\Administrator\Documents\dsh-file-context-menu"
+```
+
+> ⚠️ **重要提示**：安装、更新或修改前端 Client 注入代码后，**必须完全退出并重新打开 DSH Desktop**（重启主进程），仅在界面按 `Ctrl + R` 刷新无法重新加载底层客户端扩展。
+
+---
+
+## 📄 许可证
+
+本项目基于 [MIT 许可证](LICENSE) 开源。
