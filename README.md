@@ -1,7 +1,8 @@
-# dsh-file-menu
+# @dengsixue/dsh-file-menu
 
 > DeepSeek Harness (DSH) 聊天区文件超链接右键上下文菜单增强插件。
 
+[![npm](https://img.shields.io/npm/v/@dengsixue/dsh-file-menu.svg)](https://www.npmjs.com/package/@dengsixue/dsh-file-menu)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-brightgreen.svg)](https://github.com/topics/dsh-plugin)
 
@@ -38,20 +39,26 @@
 
 ## 📦 安装与使用
 
-### 方式 1：通过打包文件安装（推荐）
+### 方式 1：通过 npm 安装（推荐）
 
-1. 在项目根目录打包生成 `.tgz`：
+在终端中执行：
+```powershell
+dsh plugin --profile desktop add @dengsixue/dsh-file-menu
+```
+
+### 方式 2：通过 Release / 本地打包安装
+
+1. 从 GitHub Releases 下载最新安装包，或本地打包：
    ```bash
    pnpm pack
-   # 或 npm pack
    ```
-2. 在 DSH Desktop 的「插件」页面选择生成的 `dsh-file-menu-1.0.0.tgz` 安装；
-   或者直接使用命令行安装：
+2. 在 DSH Desktop 的「插件」页面选择该 `.tgz` 安装；
+   或者命令行安装：
    ```powershell
-   dsh plugin --profile desktop add .\dsh-file-menu-1.0.0.tgz
+   dsh plugin --profile desktop add .\dengsixue-dsh-file-menu-1.0.0.tgz
    ```
 
-### 方式 2：本地开发目录链接安装（便于调试）
+### 方式 3：本地开发目录链接安装（便于调试）
 
 直接将本地源码目录作为插件加入：
 ```powershell
