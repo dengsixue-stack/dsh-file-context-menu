@@ -6,6 +6,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dengsixue-stack/dsh-file-context-menu.git"
+  },
   "keywords": [
     "dsh",
     "dsh-plugin",
