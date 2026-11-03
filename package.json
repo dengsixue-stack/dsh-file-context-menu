@@ -1,6 +1,6 @@
 {
   "name": "@dengsixue/dsh-file-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Right-click menu for file links in the DeepSeek Harness chat: open with, save as, copy path, copy content, reveal in Finder or Explorer.",
   "license": "MIT",
   "publishConfig": {
